@@ -54,30 +54,6 @@ func mayhemit(data []byte) int {
 
                 xnet.AddrFromHost(host)
                 return 0
-
-            case 6:
-                var udp xnet.UDPConn
-                fuzzConsumer.GenerateStruct(&udp)
-                buf, _ := fuzzConsumer.GetBytes()
-
-                udp.ReadFrom(buf)
-                return 0
-
-            case 7:
-                var udp xnet.UDPConn
-                fuzzConsumer.GenerateStruct(&udp)
-                buf, _ := fuzzConsumer.GetBytes()
-
-                udp.Read(buf)
-                return 0
-
-            case 8:
-                host, _ := fuzzConsumer.GetString()
-                temp, _ := fuzzConsumer.GetInt()
-                port := uint16(temp)
-
-                xnet.JoinHostPort(host, port)
-                return 0
         }
     }
     return 0

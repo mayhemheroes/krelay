@@ -61,6 +61,7 @@ jobs:
         mayhemfile:
           - mayhem/fuzz_krelay_ports.mayhemfile
           - mayhem/fuzz_krelay_xnet.mayhemfile
+          - mayhem/fuzz_krelay_udp.mayhemfile
 
     steps:
       - uses: actions/checkout@v3

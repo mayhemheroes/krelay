@@ -14,6 +14,10 @@ RUN cd fuzz_krelay_ports && go-fuzz-build -libfuzzer -o fuzz_krelay_ports.a && \
 RUN cd fuzz_krelay_xnet && go-fuzz-build -libfuzzer -o fuzz_krelay_xnet.a && \
     clang -fsanitize=fuzzer fuzz_krelay_xnet.a -o fuzz_krelay_xnet.libfuzzer
 
+RUN cd fuzz_krelay_udp && go-fuzz-build -libfuzzer -o fuzz_krelay_udp.a && \
+    clang -fsanitize=fuzzer fuzz_krelay_udp.a -o fuzz_krelay_udp.libfuzzer
+
 FROM debian:bookworm-slim
 COPY --from=builder /krelay/mayhem/fuzz_krelay_ports/fuzz_krelay_ports.libfuzzer /
 COPY --from=builder /krelay/mayhem/fuzz_krelay_xnet/fuzz_krelay_xnet.libfuzzer /
+COPY --from=builder /krelay/mayhem/fuzz_krelay_udp/fuzz_krelay_udp.libfuzzer /
